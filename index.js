@@ -1,11 +1,16 @@
 import express from 'express';
-import configureHttpServer from './services/httpserver.js';
-
-// Create express app
-const app = express();
-
-// Establish port
+import path from 'path';
+const app = express()
 const port = process.env.PORT || 8080;
-app.get('/', function(request, response){
-    response.sendFile(path.join('index.html'));
-});
+const __dirname = path.resolve();
+
+
+//app.get that redirect to index.html
+app.get('/', (req, res) => {
+    res.sendFile(__dirname+'/index.html');
+})
+
+
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`)
+})
